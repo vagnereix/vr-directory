@@ -32,7 +32,6 @@ export default async function DetailsPage({ params }: DetailsPageProps) {
   if (!post) notFound();
 
   const parsedContent = md.render(post?.pitch || "");
-  console.log("🚀 ~ DetailsPage ~ parsedContent:", parsedContent);
 
   return (
     <>

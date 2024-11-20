@@ -1,7 +1,8 @@
-import SearchForm from '@/components/search-form';
-import StartupCard, { type StartupCardType } from '@/components/startup-card';
-import { sanityFetch, SanityLive } from '@/sanity/lib/live';
-import { STARTUPS_QUERY } from '@/sanity/lib/queries';
+import { auth } from "@/auth";
+import SearchForm from "@/components/search-form";
+import StartupCard, { type StartupCardType } from "@/components/startup-card";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
@@ -16,14 +17,17 @@ export default async function Home({
     },
   });
 
+  const session = await auth();
+  console.log("🚀 ~ page:", session);
+
   return (
     <>
-      <section className='pink_container'>
-        <h1 className='heading'>
+      <section className="pink_container">
+        <h1 className="heading">
           Pitch your startup, <br /> connect with entrepreneurs!
         </h1>
 
-        <p className='sub-heading !max-w-3xl'>
+        <p className="sub-heading !max-w-3xl">
           Submit Ideas, vote on pitches, and get noticed in virtual
           competitions.
         </p>
@@ -31,18 +35,18 @@ export default async function Home({
         <SearchForm query={q} />
       </section>
 
-      <section className='section_container'>
-        <p className='text-30-semibold'>
+      <section className="section_container">
+        <p className="text-30-semibold">
           {q ? `Search results for "${q}"` : `All startups`}
         </p>
 
-        <ul className='mt-7 card_grid'>
+        <ul className="mt-7 card_grid">
           {!!posts?.length ? (
             posts.map((post: StartupCardType) => (
               <StartupCard key={post._id} post={post} />
             ))
           ) : (
-            <p className='no-results'>No startups found</p>
+            <p className="no-results">No startups found</p>
           )}
         </ul>
       </section>
