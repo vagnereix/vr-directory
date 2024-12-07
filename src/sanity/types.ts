@@ -246,6 +246,11 @@ export type AUTHOR_BY_GITHUB_ID_QUERYResult = {
   email: string | null;
   bio: string | null;
 } | null;
+// Variable: AUTHOR_BY_GITHUB_EMAIL_QUERY
+// Query: *[_type == "author" && email == $email][0] {    _id,  }
+export type AUTHOR_BY_GITHUB_EMAIL_QUERYResult = {
+  _id: string;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -255,5 +260,6 @@ declare module "@sanity/client" {
     "\n  *[_type == \"startup\" && _id == $id][0] {\n    _id, \n    _createdAt,\n    title,\n    slug,\n    image,\n    description,\n    views,\n    category,\n    pitch,\n    author -> {\n      _id, name, username, image, bio\n    }\n  }  \n": STARTUP_BY_ID_QUERYResult;
     "\n  *[_type == \"startup\" && _id == $id][0] {\n    _id, views\n  }\n": STARTUP_VIEWS_QUERYResult;
     "\n  *[_type == \"author\" && _id == $id][0] {\n    _id, id, name, username, image, email, bio\n  }\n": AUTHOR_BY_GITHUB_ID_QUERYResult;
+    "\n  *[_type == \"author\" && email == $email][0] {\n    _id,\n  }\n": AUTHOR_BY_GITHUB_EMAIL_QUERYResult;
   }
 }

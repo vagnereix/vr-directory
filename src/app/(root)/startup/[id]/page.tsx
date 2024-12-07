@@ -11,6 +11,7 @@ import markdownit from "markdown-it";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/view";
+import { ErrorBoundary } from "@/components/error-boundary";
 
 export const experimental_ppr = true;
 
@@ -19,7 +20,6 @@ type DetailsPageProps = {
 };
 
 const md = markdownit();
-
 export default async function DetailsPage({ params }: DetailsPageProps) {
   const id = (await params).id;
   const post: STARTUP_BY_ID_QUERYResult = await client.fetch(
@@ -89,9 +89,11 @@ export default async function DetailsPage({ params }: DetailsPageProps) {
           {/* show recommended startups */}
         </div>
 
-        <Suspense fallback={<Skeleton className="view_skeleton" />}>
-          <View id={id} />
-        </Suspense>
+        <ErrorBoundary fallback={<p>Erro no view</p>}>
+          <Suspense fallback={<Skeleton className="view_skeleton" />}>
+            <View id={id} />
+          </Suspense>
+        </ErrorBoundary>
       </section>
     </>
   );
