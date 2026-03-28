@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import markdownit from "markdown-it";
+import MarkdownIt from "markdown-it/dist/index.cjs.js";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/view";
@@ -19,7 +19,7 @@ type DetailsPageProps = {
   params: Promise<{ id: string }>;
 };
 
-const md = markdownit();
+const md = MarkdownIt();
 export default async function DetailsPage({ params }: DetailsPageProps) {
   const id = (await params).id;
   const post: STARTUP_BY_ID_QUERYResult = await client.fetch(

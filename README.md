@@ -506,10 +506,19 @@ Rastreia visualizações de startup (Suspense + Error Boundary).
 
 ## 📸 Screenshots
 
-As imagens de interface estão em `.github/`:
+Exemplos da interface (arquivos em [`.github/`](.github/)):
 
-- **image-1.png**: Home page com listagem
-- **image-2.png**: Página detalhes da startup
+### Página inicial — listagem e busca
+
+![Página inicial do VR Startups Directory com hero, busca e grid de cards](.github/image-1.png)
+
+### Detalhe da startup — pitch e autor
+
+![Página de detalhes de uma startup com imagem, autor, categoria e pitch em Markdown](.github/image-2.png)
+
+### Sanity Studio — CMS embutido
+
+![Sanity Studio em /studio para criar e editar documentos](.github/image-3.png)
 
 ---
 
